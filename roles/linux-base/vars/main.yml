@@ -1,0 +1,12 @@
+---
+minimal_base_install_packages:
+  - openssh-server
+  - mc
+  - curl
+  - wget
+  - apt-transport-https
+  - python
+  - unzip
+
+minimal_base_uninstall_packages:
+  - rpcbind

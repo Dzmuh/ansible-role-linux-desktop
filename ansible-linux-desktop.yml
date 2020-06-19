@@ -1,0 +1,7 @@
+---
+- name: Ubuntu desktop environment playbook
+  # ansible-playbook ansible-linux-desktop.yml --ask-become-pass
+  hosts: localhost
+  roles:
+    # Desktop roles
+    #- { role: desktop, become: true }
