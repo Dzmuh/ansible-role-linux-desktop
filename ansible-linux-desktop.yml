@@ -3,5 +3,7 @@
   # ansible-playbook ansible-linux-desktop.yml --ask-become-pass
   hosts: localhost
   roles:
+    # Common roles
+    - { role: linux-base, become: true }
     # Desktop roles
     #- { role: desktop, become: true }
