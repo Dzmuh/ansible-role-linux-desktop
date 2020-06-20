@@ -1,0 +1,11 @@
+---
+- name: Apt-get update
+  apt:
+    update_cache: true
+  changed_when: false
+
+- name: Install UFW package
+  apt:
+    name: ufw
+    state: latest
+  
