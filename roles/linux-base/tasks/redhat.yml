@@ -24,7 +24,44 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# List of packages to install or uninstall of a minimal base system
-linux_base_packages_extra: []
+- name: yum install yum-utils
+  yum:
+    name: "yum-utils"
+    state: "present"
+  changed_when: false
+  ignore_errors: true
+  tags: bootstrap
 
-linux_base_uninstall_packages: []
+- name: yum-config-manager --enable
+  command: yum-config-manager --{{ item.state }} {{ item.name }}
+  loop: "{{ _yum_config_manager }}"
+  changed_when: false
+  ignore_errors: true
+  tags: bootstrap
+
+- name: yum install yum-plugin-fastestmirror
+  yum:
+    name: "yum-plugin-fastestmirror"
+    state: "present"
+  changed_when: false
+  ignore_errors: true
+  tags: bootstrap
+
+- name: disable yum-plugin-fastestmirror
+  lineinfile:
+    path: "/etc/yum/pluginconf.d/fastestmirror.conf"
+    regexp: "^enabled="
+    line: "enabled=0"
+    state: "present"
+  changed_when: false
+  ignore_errors: true
+  tags: bootstrap
+
+- name: yum install
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ _yum }}"
+  register: result
+  until: result is succeeded
+  tags: bootstrap

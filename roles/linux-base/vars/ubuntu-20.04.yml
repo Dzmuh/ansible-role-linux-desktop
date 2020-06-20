@@ -24,7 +24,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# List of packages to install or uninstall of a minimal base system
-linux_base_packages_extra: []
-
-linux_base_uninstall_packages: []
+_apt:
+  - { state: "latest", name: "apt-transport-https" }
+  - { state: "latest", name: "bash" }
+  - { state: "latest", name: "bash-completion" }
+  - { state: "latest", name: "ca-certificates" }
+  - { state: "latest", name: "curl" }
+  - { state: "latest", name: "gnupg" }
+  - { state: "latest", name: "mc" }
+  - { state: "latest", name: "python3" }
+  - { state: "latest", name: "python-is-python3" }
+  - { state: "latest", name: "rsync" }
+  - { state: "latest", name: "sudo" }
+  - { state: "latest", name: "tar" }
+  - { state: "latest", name: "zip" }

@@ -24,7 +24,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# List of packages to install or uninstall of a minimal base system
-linux_base_packages_extra: []
-
-linux_base_uninstall_packages: []
+- name: zypper install
+  vars:
+    ansible_python_interpreter: "python3"
+  zypper:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ _zypper }}"
+  register: result
+  until: result is succeeded
+  tags: bootstrap

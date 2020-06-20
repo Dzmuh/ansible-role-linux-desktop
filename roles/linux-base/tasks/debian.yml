@@ -24,7 +24,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# List of packages to install or uninstall of a minimal base system
-linux_base_packages_extra: []
+- name: apt-get update
+  apt:
+    update_cache: true
+  changed_when: false
+  tags: bootstrap
 
-linux_base_uninstall_packages: []
+- name: apt-get install
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ _apt + linux_base_packages_extra }}"
+  register: result
+  until: result is succeeded
+  tags: bootstrap
+
+- name: uninstall packages unnecessary for a minimal base
+  apt:
+    name: '{{ item }}'
+    state: absent
+    purge: yes
+    autoremove: yes
+  with_items: '{{ linux_base_uninstall_packages }}'
+  tags: bootstrap
