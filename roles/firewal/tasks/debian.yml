@@ -28,6 +28,7 @@
   apt:
     update_cache: true
   changed_when: false
+  when: managed_firewall.enabled|default(false)|bool == true
   tags: 
     - bootstrap
     - ufw

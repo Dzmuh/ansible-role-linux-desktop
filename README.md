@@ -20,3 +20,5 @@ ansible-playbook ansible-linux-desktop.yml --ask-become-pass
 
 
 ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "bootstrap,kde,firewall"
+ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "kde,firewall" -vvv --check
+ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "kde,firewall" --check

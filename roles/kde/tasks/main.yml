@@ -28,6 +28,7 @@
   include_vars: "../vars/main.yml"
   tags:
     - bootstrap
+    - firewall
     - kde
 
 - name: include release specific variables
@@ -43,6 +44,10 @@
       paths:
         - "../vars"
   ignore_errors: true
+  tags:
+    - bootstrap
+    - firewall
+    - kde
 
 - name: Include release specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -57,6 +62,9 @@
       paths:
         - "."
   ignore_errors: true
+  tags:
+    - bootstrap
+    - kde
 
 - name: Include firewall specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -71,3 +79,7 @@
       paths:
         - "."
   ignore_errors: true
+  tags:
+    - bootstrap
+    - firewall
+    - kde

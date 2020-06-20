@@ -24,36 +24,46 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# TODO: Функционал этой роли дублируется в роли firewal
+- name: Gather the apt package facts
+  package_facts:
+    manager: auto
+  tags:
+    - firewall
+    - configure
+    - kde
 
-- name: Install UFW package
-  package:
-    name: ufw
-    state: present
+- name: ufw package test result
+  debug:
+    msg: "ufw found"
   register: ufw_install
-  when: managed_firewall.enabled|default(false)|bool == true
-  tags: 
-    - bootstrap
-    - ufw
-
-- name: Start and enable UFW
-  service:
-    name: ufw
-    state: started
-    enabled: yes
-  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  when: "'ufw' in ansible_facts.packages"
   tags:
-    - ufw
+    - firewall
     - configure
+    - kde
 
-- name: Enable logging
+# Это заготовка правил под KDE Connect - нотам пока всё сложно
+- name: Allow access to tcp for port range 1714-1764 
   ufw:
-    state: enabled
-    # TODO : Вынести в настройки?
-    #logging: on
-    logging: high
+    rule: allow
+    port: 1714:1764
+    proto: tcp
   when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
-  notify: restart ufw
   tags:
-    - ufw
+    - firewall
     - configure
+    - kde
+    - never
+
+# Это заготовка правил под KDE Connect - нотам пока всё сложно
+- name: Allow access to tcp for port range 1714-1764 
+  ufw:
+    rule: allow
+    port: 1714:1764
+    proto: udp
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  tags:
+    - firewall
+    - configure
+    - kde
+    - never
