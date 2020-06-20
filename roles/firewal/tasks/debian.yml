@@ -32,7 +32,7 @@
     - bootstrap
     - ufw
 
-- name: install ufw package
+- name: Install ufw package
   package:
     name: ufw
     state: present
@@ -42,7 +42,7 @@
     - bootstrap
     - ufw
 
-- name: start and enable UFW
+- name: Start and enable ufw
   service:
     name: ufw
     state: started
@@ -52,7 +52,7 @@
     - ufw
     - configure
 
-- name: enable logging
+- name: Enable logging
   ufw:
     state: enabled
     # TODO : Вынести в настройки?
@@ -63,3 +63,38 @@
   tags:
     - ufw
     - configure
+
+- name: Reject auth
+  ufw:
+    rule: reject
+    port: auth
+    log: yes
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  notify: restart ufw
+
+# TODO: Тут нуанс в том, что SSH порт может отличатся.
+#- name: Set limit sshd connections
+#  ufw:
+#    rule: limit
+#    port: ssh
+#    proto: tcp
+#  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+#  notify: restart ufw
+
+- name: Allow access from RFC1918 networks
+  ufw:
+    rule: allow
+    src: '{{ item }}'
+  with_items:
+  - 10.0.0.0/8
+  - 172.16.0.0/12
+  - 192.168.0.0/16
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  notify: restart ufw
+
+- name: Allow OpenSSH
+  ufw:
+    rule: allow
+    name: OpenSSH
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  notify: restart ufw
