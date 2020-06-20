@@ -1,9 +1,11 @@
 ---
 - name: Ubuntu desktop environment playbook
-  # ansible-playbook ansible-linux-desktop.yml --ask-become-pass
+  # ansible-playbook ansible-linux-desktop.yml --ask-become-pass -vvv --check
   hosts: localhost
   roles:
     # Common roles
     - { role: linux-base, become: true }
+    # Server roles
+    - { role: docker, become: true }
     # Desktop roles
     #- { role: desktop, become: true }

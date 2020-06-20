@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  role_name: docker
+  author: "Ilya Fralkou (aka Dzmuh)"
+  description: Docker for Linux
+  license: MIT License
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+    - name: EL
+      versions:
+        - 8
+  galaxy_tags:
+    - containers
+    - docker
+    - orchestration
+    - compose
+
+dependencies: []

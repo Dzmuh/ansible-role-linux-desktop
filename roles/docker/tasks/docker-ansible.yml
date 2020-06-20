@@ -1,0 +1,18 @@
+---
+- name: Ensure Pip is installed.
+  package:
+    name: "{{ _pip_package }}"
+    state: present
+  tags: 
+    - bootstrap
+    - docker
+
+- name: Install python packages for Ansible Docker Integration.
+  pip:
+    name: "{{ item  }}"
+    state: present
+    executable: "{{ _pip_executable }}"
+  loop: "{{ _pip }}"
+  tags: 
+    - bootstrap
+    - docker
