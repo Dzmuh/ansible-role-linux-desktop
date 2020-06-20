@@ -91,10 +91,3 @@
   - 192.168.0.0/16
   when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
   notify: restart ufw
-
-- name: Allow OpenSSH
-  ufw:
-    rule: allow
-    name: OpenSSH
-  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
-  notify: restart ufw
