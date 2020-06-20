@@ -5,8 +5,9 @@
   roles:
     # Common roles
     - { role: linux-base, become: true }
-    - { role: ufw, become: true }
+    - { role: firewal, become: true }
     # Server roles
     - { role: docker, become: true }
     # Desktop roles
-    #- { role: desktop, become: true }
+    - { role: desktop, become: true }
+    - { role: kde, become: true }

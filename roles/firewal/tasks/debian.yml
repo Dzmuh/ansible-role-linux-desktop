@@ -24,7 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-- name: Apt-get update
+- name: apt-get update
   apt:
     update_cache: true
   changed_when: false
@@ -32,7 +32,7 @@
     - bootstrap
     - ufw
 
-- name: Install UFW package
+- name: install ufw package
   package:
     name: ufw
     state: present
@@ -42,7 +42,7 @@
     - bootstrap
     - ufw
 
-- name: Start and enable UFW
+- name: start and enable UFW
   service:
     name: ufw
     state: started
@@ -52,7 +52,7 @@
     - ufw
     - configure
 
-- name: Enable logging
+- name: enable logging
   ufw:
     state: enabled
     # TODO : Вынести в настройки?
