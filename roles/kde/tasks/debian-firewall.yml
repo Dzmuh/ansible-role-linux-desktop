@@ -24,10 +24,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-managed_firewall:
-  enabled: true
+# TODO: Функционал этой роли дублируется в роли firewal
 
-# List of packages to install or uninstall of a KDE
-kde_packages_extra: []
+- name: Install UFW package
+  package:
+    name: ufw
+    state: present
+  register: ufw_install
+  when: managed_firewall.enabled|default(false)|bool == true
+  tags: 
+    - bootstrap
+    - ufw
 
-kde_uninstall_packages: []
+- name: Start and enable UFW
+  service:
+    name: ufw
+    state: started
+    enabled: yes
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  tags:
+    - ufw
+    - configure
+
+- name: Enable logging
+  ufw:
+    state: enabled
+    # TODO : Вынести в настройки?
+    #logging: on
+    logging: high
+  when: ufw_install is success and managed_firewall.enabled|default(false)|bool == true
+  notify: restart ufw
+  tags:
+    - ufw
+    - configure

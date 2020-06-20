@@ -24,10 +24,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-managed_firewall:
-  enabled: true
+- name: apt-get update
+  apt:
+    update_cache: true
+  changed_when: false
+  tags: 
+    - bootstrap
+    - kde
 
-# List of packages to install or uninstall of a KDE
-kde_packages_extra: []
+- name: apt-get install
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ _apt + kde_packages_extra }}"
+  register: result
+  until: result is succeeded
+  tags: 
+    - bootstrap
+    - kde
 
-kde_uninstall_packages: []
+- name: apt-get install uninstall
+  apt:
+    name: '{{ item }}'
+    state: absent
+    purge: yes
+    autoremove: yes
+  with_items: '{{ kde_uninstall_packages }}'
+  tags: 
+    - bootstrap
+    - kde

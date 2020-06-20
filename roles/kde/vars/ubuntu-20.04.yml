@@ -24,10 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-managed_firewall:
-  enabled: true
-
-# List of packages to install or uninstall of a KDE
-kde_packages_extra: []
-
-kde_uninstall_packages: []
+_apt:
+  - { state: "latest", name: "kchmviewer" }
+  - { state: "latest", name: "kde-config-cron" }
+  - { state: "latest", name: "kdeconnect" }
+  - { state: "latest", name: "krita" }

@@ -1,0 +1,6 @@
+managed_firewall:
+  enabled: true
+
+# KDE
+kde_packages_extra: []
+kde_uninstall_packages: []
