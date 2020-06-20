@@ -1,0 +1,27 @@
+root = true
+
+[*]
+indent_size = 4
+indent_style = space
+end_of_line = lf
+charset = utf-8
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.{bat,cmd,[Bb][Aa][Tt],[Cc][Mm][Dd]]
+# DOS/Win *requires* BAT/CMD files to have CRLF newlines
+end_of_line = crlf
+
+[*.ps1]
+indent_style = space
+end_of_line = lf
+charset = utf-8-bom
+insert_final_newline = true
+
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space
+tab_width = 2
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
