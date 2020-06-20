@@ -33,3 +33,7 @@ managed_firewall:
 </tr>
 </tr>
 </table>
+
+## Ссылки
+
+* [ufw – Manage firewall with UFW — Ansible Documentation](https://docs.ansible.com/ansible/latest/modules/ufw_module.html)
