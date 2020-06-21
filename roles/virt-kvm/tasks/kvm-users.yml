@@ -1,0 +1,11 @@
+---
+- name: Ensure kvm users are added to the libvirt group.
+  user:
+    name: "{{ item }}"
+    groups: libvirt
+    append: true
+  with_items: "{{ kvm_users }}"
+  ignore_errors: true
+  tags:
+    - bootstrap
+    - kvm

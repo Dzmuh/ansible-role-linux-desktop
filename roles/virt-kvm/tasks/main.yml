@@ -61,4 +61,11 @@
         - "."
   ignore_errors: true
   tags:
+    - bootstrap
+    - kvm
+
+- include_tasks: kvm-users.yml
+  when: kvm_users | length > 0
+  tags: 
+    - bootstrap
     - kvm

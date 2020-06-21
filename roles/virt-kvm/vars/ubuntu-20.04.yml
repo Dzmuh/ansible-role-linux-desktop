@@ -25,8 +25,9 @@
 # SOFTWARE.
 
 _apt:
+  - { state: "latest", name: "bridge-utils" }
   - { state: "latest", name: "qemu-kvm" }
   - { state: "latest", name: "libvirt-daemon-system" }
   - { state: "latest", name: "libvirt-clients" }
-  - { state: "latest", name: "bridge-utils" }
+  - { state: "latest", name: "virt-manager" }
   - { state: "latest", name: "virtinst" }

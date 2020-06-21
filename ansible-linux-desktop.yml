@@ -8,6 +8,7 @@
     - { role: firewal, become: true }
     # Server roles
     - { role: docker, become: true }
+    - { role: virt-kvm, become: true }
     # Desktop roles
     - { role: desktop, become: true }
     - { role: kde, become: true }
