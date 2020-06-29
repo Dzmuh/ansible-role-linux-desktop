@@ -11,4 +11,5 @@
     - { role: virt-kvm, become: true }
     # Desktop roles
     - { role: desktop, become: true }
+    - { role: multimedia, become: true }
     - { role: kde, become: true }
