@@ -13,3 +13,5 @@
     - { role: desktop, become: true }
     - { role: multimedia, become: true }
     - { role: kde, become: true }
+    # Develop
+    - { role: dzmuh/hugo, become: true }
