@@ -23,3 +23,10 @@ ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "bootstrap,k
 ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "kde,firewall" -vvv --check
 ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "kde,firewall" --check
 ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "bootstrap,kvm" --check
+
+## TODO
+
+- [ ] stellarium
+- [ ] mypaint
+- [ ] mypaint-brushes
+- [ ] digikam
