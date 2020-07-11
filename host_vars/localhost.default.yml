@@ -4,10 +4,9 @@ managed_firewall:
 
 # Linux Desktop
 desktop_packages_extra:
-  - hunspell-be
-  - hunspell-pl
-  - hunspell-ru
-desktop_uninstall_packages: []
+  - { state: "latest", name: "hunspell-be" }
+  - { state: "latest", name: "hunspell-pl" }
+  - { state: "latest", name: "hunspell-ru" }
 
 # KDE
 kde_packages_extra: []

@@ -31,22 +31,12 @@
   tags: 
     - bootstrap
 
-- name: apt-get install
+- name: apt-get install / uninstall
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   loop: "{{ _apt + desktop_packages_extra }}"
   register: result
   until: result is succeeded
-  tags: 
-    - bootstrap
-
-- name: apt-get install uninstall
-  apt:
-    name: '{{ item }}'
-    state: absent
-    purge: yes
-    autoremove: yes
-  with_items: '{{ desktop_uninstall_packages }}'
   tags: 
     - bootstrap

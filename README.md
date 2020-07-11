@@ -30,3 +30,4 @@ ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "bootstrap,k
 - [ ] mypaint
 - [ ] mypaint-brushes
 - [ ] default-jdk
+- [ ] Установка youtube-dl через pip(pip3) последней версии
