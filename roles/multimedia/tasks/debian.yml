@@ -24,14 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-- name: apt-get update
+- name: apt-get update.
   apt:
     update_cache: true
   changed_when: false
   tags:
     - bootstrap
 
-- name: apt-get install
+- name: apt-get install.
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
@@ -41,7 +41,7 @@
   tags:
     - bootstrap
 
-- name: apt-get install uninstall
+- name: apt-get install uninstall.
   apt:
     name: '{{ item }}'
     state: absent
@@ -49,4 +49,20 @@
     autoremove: yes
   with_items: '{{ multimedia_uninstall_packages }}'
   tags:
+    - bootstrap
+
+- name: Ensure pip is installed.
+  package:
+    name: "{{ _pip_package }}"
+    state: present
+  tags: 
+    - bootstrap
+
+- name: Install python packages.
+  pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    executable: "{{ _pip_executable }}"
+  loop: "{{ _pip }}"
+  tags: 
     - bootstrap

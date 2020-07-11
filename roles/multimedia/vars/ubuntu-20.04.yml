@@ -24,9 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+_pip_package: python3-pip
+_pip_executable: "{{ 'pip3' if _pip_package.startswith('python3') else 'pip' }}"
+_pip:
+  - { state: "latest", name: "youtube-dl" }
+
 _apt:
   - { state: "latest", name: "ffmpeg" }
   - { state: "latest", name: "ffmpeg2theora" }
   - { state: "latest", name: "libavcodec-extra" }
   - { state: "latest", name: "libavresample4" }
-  - { state: "latest", name: "youtube-dl" }
+  - { state: "absent", name: "youtube-dl" }
