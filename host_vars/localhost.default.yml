@@ -1,9 +1,18 @@
+---
 managed_firewall:
   enabled: true
 
+# Linux Desktop
+desktop_packages_extra:
+  - hunspell-be
+  - hunspell-pl
+  - hunspell-ru
+desktop_uninstall_packages: []
+
 # KDE
 kde_packages_extra: []
-kde_uninstall_packages: []
+kde_uninstall_packages:
+  - ktorrent
 
 # Docker
 docker_users: []

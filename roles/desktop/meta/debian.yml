@@ -24,7 +24,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# List of packages to install or uninstall of a Linux Desktop
-desktop_packages_extra: []
+- name: apt-get update
+  apt:
+    update_cache: true
+  changed_when: false
+  tags: 
+    - bootstrap
 
-desktop_uninstall_packages: []
+- name: apt-get install
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ _apt + desktop_packages_extra }}"
+  register: result
+  until: result is succeeded
+  tags: 
+    - bootstrap
+
+- name: apt-get install uninstall
+  apt:
+    name: '{{ item }}'
+    state: absent
+    purge: yes
+    autoremove: yes
+  with_items: '{{ desktop_uninstall_packages }}'
+  tags: 
+    - bootstrap

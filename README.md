@@ -29,4 +29,4 @@ ansible-playbook ansible-linux-desktop.yml --ask-become-pass --tags "bootstrap,k
 - [ ] stellarium
 - [ ] mypaint
 - [ ] mypaint-brushes
-- [ ] digikam
+- [ ] default-jdk
