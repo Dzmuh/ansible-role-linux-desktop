@@ -30,4 +30,5 @@ _apt:
   - { state: "latest", name: "kchmviewer" }
   - { state: "latest", name: "kde-config-cron" }
   - { state: "latest", name: "kdeconnect" }
+  - { state: "latest", name: "kipi-plugins" }
   - { state: "latest", name: "krita" }
