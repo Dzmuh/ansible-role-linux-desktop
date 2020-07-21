@@ -34,4 +34,5 @@ _apt:
   - { state: "latest", name: "ffmpeg2theora" }
   - { state: "latest", name: "libavcodec-extra" }
   - { state: "latest", name: "libavresample4" }
+  - { state: "latest", name: "mpv" }
   - { state: "absent", name: "youtube-dl" }
